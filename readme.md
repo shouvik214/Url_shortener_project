@@ -1,6 +1,6 @@
 # URL Shortener
 
-A simple and scalable URL shortening service built with **Go**, **PostgreSQL**, **Redis**, and **Docker**.
+A simple URL shortening service built with **Go**, **PostgreSQL**, and **Redis**.
 
 ## Features
 
@@ -9,39 +9,36 @@ A simple and scalable URL shortening service built with **Go**, **PostgreSQL**, 
 * Redis caching for faster lookups
 * PostgreSQL for persistent storage
 * REST API
-* Docker support
-* Graceful shutdown and middleware
+* Middleware and graceful shutdown
 
 ## Tech Stack
 
 * **Go** — Backend
 * **PostgreSQL** — Database
 * **Redis** — Caching
-* **Docker** — Containerization
+* **Docker Compose** — Redis deployment
 
 ## API
 
 ### Create Short URL
 
+```http
 POST /shorten
+```
 
 Request:
 
+```json
 {
   "url": "https://example.com"
 }
-
-
-Response:
-
-{
-  "short_url": "http://localhost:8080/abc123"
-}
+```
 
 ### Redirect
 
-
+```http
 GET /abc123
+```
 
 Redirects to the original URL.
 
@@ -49,22 +46,31 @@ Redirects to the original URL.
 
 Clone the repository:
 
+```bash
 git clone https://github.com/shouvik214/Url_shortener_project.git
 cd Url_shortener_project
+```
 
-Run with Docker:
+Start Redis:
 
-docker compose up --build
+```bash
+docker compose up -d
+```
 
-run directly with Go:
+Then run the Go server:
 
+```bash
 go run ./cmd/server
+```
 
 The server runs on:
+
+```text
 http://localhost:8080
+```
 
 ## Author
 
 **Shouvik Mondal**
 
-[GitHub](https://github.com/shouvik214)
+GitHub: https://github.com/shouvik214
